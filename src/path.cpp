@@ -36,7 +36,7 @@
 # include "windows_file_codecvt.hpp"
 # include <windows.h>
 #elif defined(macintosh) || defined(__APPLE__) || defined(__APPLE_CC__) \
- || defined(__FreeBSD__) || defined(__OPEN_BSD__) || defined(__HAIKU__)
+ || defined(__FreeBSD__) || defined(__OPEN_BSD__)
 # include <boost/filesystem/detail/utf8_codecvt_facet.hpp>
 #endif
 
@@ -251,13 +251,6 @@ namespace filesystem
   path& path::remove_filename()
   {
     m_pathname.erase(m_parent_path_end());
-    return *this;
-  }
-
-  path&  path::remove_trailing_separator()
-  {
-    if (!m_pathname.empty() && is_separator(m_pathname[m_pathname.size() - 1]))
-      m_pathname.erase(m_pathname.size() - 1);
     return *this;
   }
 
@@ -667,11 +660,11 @@ namespace filesystem
     const path&  dot_path()
     {
 #   ifdef BOOST_WINDOWS_API
-      static const fs::path dot_pth(L".");
+      static const fs::path dot(L".");
 #   else
-      static const fs::path dot_pth(".");
+      static const fs::path dot(".");
 #   endif
-      return dot_pth;
+      return dot;
     }
 
     BOOST_FILESYSTEM_DECL
@@ -838,7 +831,7 @@ namespace
     std::locale global_loc = std::locale();
     return std::locale(global_loc, new windows_file_codecvt);
 # elif defined(macintosh) || defined(__APPLE__) || defined(__APPLE_CC__) \
-  || defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__HAIKU__)
+  || defined(__FreeBSD__) || defined(__OpenBSD__)
     // "All BSD system functions expect their string parameters to be in UTF-8 encoding
     // and nothing else." See
     // http://developer.apple.com/mac/library/documentation/MacOSX/Conceptual/BPInternational/Articles/FileEncodings.html
