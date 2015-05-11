@@ -1,6 +1,6 @@
 set(BOOSTFILESYSTEM_LIBRARIES boostfilesystem)
 
-add_library(${BOOSTFILESYSTEM_LIBRARIES}
+add_library(${BOOSTFILESYSTEM_LIBRARIES} STATIC
     src/codecvt_error_category.cpp
     src/operations.cpp
     src/path.cpp
