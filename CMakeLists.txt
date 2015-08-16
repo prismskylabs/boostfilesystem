@@ -1,5 +1,8 @@
 set(BOOSTFILESYSTEM_LIBRARIES boostfilesystem)
 
+include_directories(
+    ${BOOST_INCLUDE_DIRS})
+
 add_library(${BOOSTFILESYSTEM_LIBRARIES} STATIC
     src/codecvt_error_category.cpp
     src/operations.cpp
@@ -10,9 +13,6 @@ add_library(${BOOSTFILESYSTEM_LIBRARIES} STATIC
     src/utf8_codecvt_facet.cpp
     src/windows_file_codecvt.cpp
     src/windows_file_codecvt.hpp)
-
-target_include_directories(${BOOSTFILESYSTEM_LIBRARIES} PRIVATE
-    ${BOOST_INCLUDE_DIRS})
 
 target_link_libraries(${BOOSTFILESYSTEM_LIBRARIES}
     ${BOOSTSYSTEM_LIBRARIES})
